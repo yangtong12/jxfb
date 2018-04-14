@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../resources/css/tableedit.css">
+		<script type="text/javascript" src="../resources/js/jquery-3.3.1.min.js"></script>
+	</head>
+
+	<body>
+		<form action="#">
+			<div class="content">
+				<div class="contentleft">
+					<p><span>预约活动id:</span><input type="text" id="activityid" name="activityid" autocomplete="off" readonly="readonly"><br /></p>
+					<p><span>预约类别:</span>
+						<select id="activitycategory">
+							<option value="1">存书柜预约</option>
+							<option value="2">志愿者预约</option>
+							<option value="3">讲座预约</option>
+						</select>
+					</p>
+					<p><span>开始时间:</span><input type="date" name="activitybgntm" autocomplete="off" id="activitybgntm"><br /></p>
+					<p><span>结束时间:</span><input type="date" name="activityendtm" id="activityendtm" autocomplete="off"><br /></p>
+					<p><span>可预约总数:</span><input type="number" id="canordernum" name="canordernum" autocomplete="off"><br /></p>
+				</div>
+				<div class="contentright">
+					<p><span>第一次讲座预约:</span><input type="text" name="beginno" id="beginno" autocomplete="off"><br /></p>
+					<p><span>开放预约年级:</span><input type="text" name="opengrade" id="opengrade" autocomplete="off"><br /></p>
+					<p><span>剩余可预约数量:</span><input type="number" name="leftordernum" id="leftordernum" autocomplete="off"><br /></p>
+					<p><span>活动状态:</span><input type="text" name="activitystatus" id="activitystatus" autocomplete="off"><br /></p>
+					<p><span>活动名称:</span><input type="text" name="activityname" id="activityname" autocomplete="off"><br /></p>
+				</div>
+
+				<p class="btn" style="clear: both;">
+					<input type="button" value="提交" id="submitbtn" />
+					<input type="reset" value="重置" id="resetbtn" />
+				</p>
+			</div>
+		</form>
+		<script type="text/javascript" src="../resources/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../resources/js/common.js"></script>
+		<script type="text/javascript" src="../resources/js/actitableedit.js"></script>
+		
+		<!--放到按钮上面变色-->
+		<script type="text/javascript">
+			window.onload = function() {
+				var btn1 = document.getElementById('submitbtn');
+				var btn2 = document.getElementById('resetbtn');
+				btn1.onmouseover = function() {
+					this.style.backgroundColor = '#1c4587';
+					this.style.color = '#FFF';
+				}
+				btn1.onmouseout = function() {
+					this.style.backgroundColor = '';
+					this.style.color = '';
+				}
+				btn2.onmouseover = function() {
+					this.style.backgroundColor = '#1c4587';
+					this.style.color = '#FFF';
+				}
+				btn2.onmouseout = function() {
+					this.style.backgroundColor = '';
+					this.style.color = '';
+				}
+			}
+		</script>
+		
+		<!-- 将时间戳转化为日期格式 -->
+     <!--   <script type="text/javascript">
+     function dateFormat(date){
+	return date.getFullYear()+"/"+date.getMonth()+"/"+date.getDay()+" ";
+	}
+	</script>
+	<script id="activityBgntm" type="text/html">
+        {{#
+            var date = new Date();
+  	        date.setTime(d.activityBgntm);
+  	  
+  	        return dateFormat(date); 
+    }} 
+	</script>
+	<script id="activityEndtm" type="text/html">
+        {{#
+            var date = new Date();
+  	        date.setTime(d.activityEndtm);
+  	  
+  	        return dateFormat(date); 
+    }} 
+	</script> --> 
+       
+            <!-- <script type="text/javascript">
+		    function beforeSubmit() {
+		        var activityid = document.getElementById('activityid').value;
+		        var activityCategory = document.getElementById('activityCategory').value;
+		        var activitybgntm = document.getElementById('activitybgntm').value;
+		        var activityendtm = document.getElementById('activityendtm').value;
+		        var canordernum = document.getElementById('canordernum').value;
+		        var beginno = document.getElementById('beginno').value;
+		        var opengrade = document.getElementById('opengrade').value;
+		        var leftordernum = document.getElementById('leftordernum').value;
+		        var activitystatus = document.getElementById('activitystatus').value;
+		        var activityname = document.getElementById('activityname').value;
+		       /*  if (username.length < 6 || password.length < 6) {
+		            alert('格式不正确！');
+		            return false;
+		        } else {
+		            return true;
+		        } */
+		        return;
+		    }
+		 </script> -->
+	</body>
+
+</html>

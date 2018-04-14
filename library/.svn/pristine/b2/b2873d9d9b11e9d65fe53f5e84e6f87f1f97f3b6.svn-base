@@ -1,0 +1,9 @@
+package com.nchu.library.dao;
+
+import java.util.List;
+
+public interface VolunteerInfoDao {
+	 
+	List<V>
+
+}

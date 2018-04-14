@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>预约活动</title>
+<link rel="stylesheet" type="text/css"href="../resources/layui/css/layui.css">
+<script src="../resources/js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+	<div style="margin-bottom: -20px;">
+		<ins class="adsbygoogle "
+			style="display: inline-block; width: 970px; height: 0px"
+			data-ad-client="ca-pub-6111334333458862 " data-ad-slot="3820120620 "></ins>
+	</div>
+
+	<div class="layui-btn-group demoTable ">
+		<button class="layui-btn " data-type="getCheckData">获取选中行数据</button>
+		<button class="layui-btn " data-type="getCheckLength">获取选中数目</button>
+		<button class="layui-btn " data-type="isAll">验证是否全选</button>
+		<button class="layui-btn " id="addEl">添加行数据</button>
+	</div>
+
+	<table class="layui-hide" id="activityinfo" lay-filter="demo"></table>
+    
+    
+    
+	<!-- 将时间戳转化为日期格式 -->
+  <script type="text/javascript">
+	function dateFormat(date){
+	return date.getFullYear()+"/"+date.getMonth()+"/"+date.getDay()+" ";
+	}
+	</script>
+	<script id="activityBgntm" type="text/html">
+        {{#
+            var date = new Date();
+  	        date.setTime(d.activityBgntm);
+  	  
+  	        return new Date(date).Format("yyyy-MM-dd"); 
+    }} 
+	</script>
+	<script id="activityEndtm" type="text/html">
+        {{#
+            var date = new Date();
+  	        date.setTime(d.activityEndtm);
+  	  
+  	        return new Date(date).Format("yyyy-MM-dd");
+    }} 
+	</script>
+	
+	
+	
+	
+
+
+	<!-- 添加行数据弹出框 -->
+	<script type="text/javascript">
+		$('#addEl').on('click', function() {
+			layer.open({
+				type : 2,
+				maxmin : true,
+				shadeClose : true, //点击遮罩关闭层
+				area : [ '800px', '520px' ],
+				content : 'addactibtn.html'
+			});
+		});
+	</script>
+
+
+
+	<script type="text/html" id="barDemo">
+		    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+			<a class="layui-btn layui-btn-xs actitable_edit" lay-event="edit" id="actitable_edit">编辑</a>
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+
+	 <!-- 编辑按钮弹出框 -->
+	<script type="text/javascript">
+		$('#actitable_edit').on('click', function() {
+			layer.open({
+				type : 2,
+				title : '预约活动编辑',
+				maxmin : true,
+				shadeClose : true, //点击遮罩关闭层
+				area : [ '800px', '520px' ],
+				content : 'actitableedit.html'
+			});
+		});
+	</script> 
+	
+	<script type="text/javascript" src="../resources/layui/layui.js"></script>
+	<script type="text/javascript" src="../resources/js/addbtn.js"></script>
+	<script type="text/javascript" src="../resources/js/common.js"></script>
+    <script type="text/javascript" src="../resources/js/orderactivity.js"></script>
+	
+    
+</body>
+</html>
+
+<!-- <table class="layui-table" lay-data="{width: 1150, height:332, url:'queryActivityinfo', page:true, id:'activityinfo'}" lay-filter="demo">	 
+		    <thead>
+		      <tr >
+		        <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
+		        <th lay-data="{field:'activityId', width:80,unresize:'true', fixed: true}">预约活动id</th>
+		        <th lay-data="{field:'activityCategory', width:80}">预约目录</th>
+		        <th lay-data="{field:'activityBgntm', width:120}">开始时间</th>
+		        <th lay-data="{field:'activityEndtm',unresize:'true', width:100}">结束时间</th>
+		        <th lay-data="{field:'canorderNum',unresize:'true', width:80}">可预约总数</th>
+		        <th lay-data="{field:'beginNo',unresize:'true', width:100}">第一次讲座预约</th>
+		        <th lay-data="{field:'openGrade',unresize:'true', width:80}">开放预约年级</th>
+		        <th lay-data="{field:'leftorderNum',unresize:'true', width:100}">剩余可预约数量</th>
+		        <th lay-data="{field:'activityStatus',unresize:'true', width:80,templet:'#showTypeName'}">活动状态</th>
+		        <th lay-data="{field:'activityName',unresize:'true', width:100, fixed: 'right'}">活动名称</th>
+		        <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+		      </tr>
+	    	</thead>
+	    </table> -->

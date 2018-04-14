@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nchu.library.dao.ActivityInfoDao">
+   <select id="queryActivityInfo" resultType="com.nchu.library.entity.ActivityInfo">
+         SELECT activityid,activitycategory,activitybgntm,activityendtm,
+         canordernum,beginno,opengrade,leftordernum,activitystatus
+         FROM activityinfo
+         where activityid=#{activityId}
+         order by activityid desc limit 2     
+   </select>
+   <insert id="insertAppointmentInfo" useGeneratedKeys="true" keyProperty="activityId"
+		keyColumn="activityid">
+		INSERT INTO
+		activityinfo(activitycategory,activitybgntm,activityendtm,
+		canordernum,beginno,opengrade,leftordernum,activitystatus,activityname)
+		VALUES
+		(#{activityCategory},#{activityBgntm},#{activityEndtm},
+		#{canorderNum},#{beginNo},#{openGrade},#{leftorderNum},#{activityStatus},#{activityName})
+   </insert>
+</mapper>

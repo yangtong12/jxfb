@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nchu.library.dao.OrderInfoDao">
+<resultMap id="OrderInfoResultMap" type="com.nchu.library.entity.OrderInfo">
+		<id column="orderid" property="orderId" />
+		<result column="userno" property="userNo" />
+		<result column="userqq" property="userqq" />
+		<result column="ordertm" property="orderTm" />
+		<result column="orderstatus" property="orderStatus" />
+		<result column="orderno" property="orderNo" />
+		<result column="ordermemo" property="orderMemo" />
+		<association property="activityInfo" column="activityid"
+			javaType="com.nchu.library.entity.ActivityInfo">
+			<id column="activityid" property="activityId" />
+			<result column="activityname" property="activityName" />
+			<result column="activitycategory" property="activityCategory" />
+		</association>	
+	</resultMap>
+   <select id="queryOrderInfoList" resultMap="OrderInfoResultMap">
+        select o.orderid,o.userno,o.userqq,o.ordertm,o.orderstatus,o.orderno,
+       o.username,o.activityid,o.ordermemo,a.activityname,a.activitycategory
+       FROM
+       orderinfo o,activityinfo a
+       WHERE
+       userno=#{userNo}
+       AND
+       a.activityid=o.activityid
+   </select>
+   <insert id="insertOrderInfo" useGeneratedKeys="true" keyProperty="orderId"
+		keyColumn="orderid">
+		INSERT INTO
+		activityinfo(activityid,userno,username,userqq,ordertm,orderstatus,
+		orderno,ordermemo)
+		VALUES
+		(#{activityId},#{userNo},#{userName},
+		#{userqq},#{orderTm},#{orderMemo})
+   </insert>
+   <select id="queryOrderInfo" resultMap="OrderInfoResultMap">
+       select o.orderid,o.userno,o.userqq,o.ordertm,o.orderstatus,o.orderno,
+       o.username,o.activityid,o.ordermemo,a.activityname
+       FROM
+       activityinfo a,
+       orderinfo o
+       <where>
+          <if test="orderInfo.activityId!=null">
+             and o.activityid=#{orderInfo.activityId}
+          </if>
+          <if test="orderInfo.userNo!=null">
+             and o.userno like '%${orderInfo.userNo}%'
+          </if>
+          <if test="orderInfo.userName!=null">
+             and o.username like '%${orderInfo.userName}%'
+          </if>
+          <if test="orderInfo.orderNo!=null">
+            and o.orderno like '%${orderInfo.orderNo}%'
+          </if>
+       </where>
+   </select>
+    <select id="queryOrderInfoCount" resultType="int">
+       select
+       count(1)
+       FROM
+       activityinfo a,
+       orderinfo o
+       <where>
+      
+          <if test="orderInfo.activityId!=null">
+             and o.activityid=#{orderInfo.activityId}
+          </if>
+          <if test="orderInfo.userNo!=null">
+             and o.userno like '%${orderInfo.userNo}%'
+          </if>
+          <if test="orderInfo.userName!=null">
+             and o.username like '%${orderInfo.userName}%'
+          </if>
+          <if test="orderInfo.orderNo!=null">
+            and o.orderno like '%${orderInfo.orderNo}%'
+          </if>
+       
+       </where>
+   </select>
+    <update id="updateOrderInfo" parameterType="com.nchu.library.entity.OrderInfo">
+		UPDATE orderinfo
+		<set>
+		  <if test="userNo!=null">
+		      userno=#{userNo},
+		   </if>
+		   <if test="userName!=null">
+		     username=#{userName},
+		   </if>
+		   <if test="orderTm!=null">
+		     ordertm=#{orderTm},
+		   </if>
+		   <if test="userqq!=null">
+		    userqq=#{userqq},
+		   </if>
+		   <if test="canorderNum!=null">
+		     canordernum=#{canorderNum},
+		   </if>
+		   <if test="orderStatus!=-1">
+		     orderstatus=#{orderStatus},
+		   </if>
+		   <if test="orderNo!=null">
+		     orderno=#{orderNo},
+		   </if>
+		   <if test="orderMemo!=null">
+		     ordermemo=#{orderMemo},
+		   </if>
+		</set>
+		<where>
+		activityid = #{activityId}
+		  
+		</where>
+	</update>
+	<delete id="deleteOrderInfo">
+	   DELETE
+	   FROM
+	   orderinfo
+	   WHERE
+	   orderid=#{orderId}
+	</delete>
+</mapper>

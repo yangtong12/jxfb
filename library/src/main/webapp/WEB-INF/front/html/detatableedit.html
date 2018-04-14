@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../resources/css/tableedit.css">
+	</head>
+
+	<body>
+		<form>
+			<div class="content">
+				<div class="contentleft" id="left">
+					<p><span>已预约列表id:</span><input type="text" name="orderid" autocomplete="off"></p>
+					<p><span>预约活动id:</span><input type="text" name="activityid" autocomplete="off"></p>
+					<p><span>用户学号:</span><input type="text" name="userno" autocomplete="off"></p>
+					<p><span>用户姓名:</span><input type="text" name="username" autocomplete="off"></p>
+					<p><span>用户QQ:</span><input type="text" name="userqq" autocomplete="off"></p>
+				</div>
+				<div class="contentright" id="right">
+					<p><span>预约成功的时间:</span><input type="text" name="ordertm" autocomplete="off"></p>
+					<p><span>预约状态:</span><input type="text" name="orderstatus" autocomplete="off"></p>
+					<p><span>预约号:</span><input type="text" name="orderno" autocomplete="off"></p>
+					<p><span>预约数量:</span><input type="text" name="ordermemo" autocomplete="off"></p>
+				</div>
+
+				<p class="btn" style="clear: both;">
+					<input type="submit" value="提交" id="submitbtn" />
+					<input type="reset" value="重置" id="resetbtn" />
+				</p>
+			</div>
+		</form>
+
+		<!--鼠标指针移动到按钮变色-->
+		<script type="text/javascript">
+			window.onload = function() {
+				var btn1 = document.getElementById('submitbtn');
+				var btn2 = document.getElementById('resetbtn');
+				btn1.onmouseover = function() {
+					this.style.backgroundColor = '#1c4587';
+					this.style.color = '#FFF';
+				}
+				btn1.onmouseout = function() {
+					this.style.backgroundColor = '';
+					this.style.color = '';
+				}
+				btn2.onmouseover = function() {
+					this.style.backgroundColor = '#1c4587';
+					this.style.color = '#FFF';
+				}
+				btn2.onmouseout = function() {
+					this.style.backgroundColor = '';
+					this.style.color = '';
+				}
+			}
+		</script>
+		<!--使左右两个div高度保持一致-->
+		<script type="text/javascript">
+			function $(id) {
+				return document.getElementById(id)
+			}
+
+			function getHeight() {
+				if($("left").offsetHeight >= $("right").offsetHeight) {
+					$("right").style.height = $("left").offsetHeight + "px";
+				} else {
+					$("left").style.height = $("right").offsetHeight + "px";
+				}
+			}
+			window.onload = function() {
+				getHeight();
+			}
+		</script>
+
+	</body>
+
+</html>

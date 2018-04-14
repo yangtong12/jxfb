@@ -1,0 +1,18 @@
+package com.nchu.library.service;
+
+import java.util.List;
+
+import com.nchu.library.entity.ActivityInfo;
+
+public interface ActivityInfoService {
+	
+	/**
+	 * 查询活动
+	 */
+	List<ActivityInfo> getActivityInfo(long ActivityId);
+	/**
+	 * 用户预约后要添加数据
+	 */
+	int addActivityInfo(ActivityInfo activityInfo);
+
+}

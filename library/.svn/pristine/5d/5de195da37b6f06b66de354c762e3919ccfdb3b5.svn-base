@@ -1,0 +1,14 @@
+server.port=8080
+#\u52A0\u5165o2o
+server.context-path=/library
+
+#DataSource
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/dump_library?characterEncoding=utf-8
+jdbc.username=root
+jdbc.password=yangtong1314
+
+#mybatis
+mybatis_config_file=mybatis-config.xml
+mapper_path=/mapper/**.xml
+type_alias_package=com.nchu.library.entity

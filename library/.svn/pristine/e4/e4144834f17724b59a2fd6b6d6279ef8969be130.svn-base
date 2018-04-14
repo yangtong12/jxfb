@@ -1,0 +1,35 @@
+package com.nchu.library.service.Impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.nchu.library.dao.ActivityInfoDao;
+import com.nchu.library.entity.ActivityInfo;
+import com.nchu.library.service.ActivityInfoService;
+
+@Service
+public class ActivityInfoServiceImpl implements ActivityInfoService{
+	@Autowired
+	private ActivityInfoDao activityInfoDao;
+
+	@Override
+	public List<ActivityInfo> getActivityInfo(long ActivityId) {
+		// TODO Auto-generated method stub
+		return activityInfoDao.queryActivityInfo(ActivityId);
+	}
+	@Override
+	@Transactional
+	public int addActivityInfo(ActivityInfo activityInfo) {
+		// TODO Auto-generated method stub
+		int effNum=activityInfoDao.insertAppointmentInfo(activityInfo);
+		if(effNum>0) {
+			return 1;
+		}else {
+		    return 0;
+		}
+	}
+
+}

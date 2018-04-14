@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图书馆预约</title>
+		<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../resources/layui/css/layui.css">
+		<script type="text/javascript" src="../resources/layui/layui.js"></script>
+		<script type="text/javascript" src="../resources/js/jquery-3.3.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../resources/css/main.css">
+	</head>
+	<body class="nav" style="text-align: center;">
+		<div id="top">
+			<div class="layui-tab" lay-filter="page">
+				<ul class="layui-tab-title">
+					<li lay-id="cupboard" class="layui-this" id="get_bookcase">柜号预约</li>
+					<li lay-id="volform" id="volunteer_appoint">志愿者预约</li>
+					<li lay-id="lectureform" id="speach_appoint">讲座预约</li>
+					<li lay-id="myorder" id="my_order">我的预约</li>
+				</ul>
+			</div>
+
+			<div class="bottom">
+				<iframe id="iframe_page" width="100%" src=""></iframe>
+			</div>
+		</div>
+
+		<div id="bottom">
+			<div id="myframe">
+				<input id="myBtn" type="button" value="我的" />
+			</div>
+			<div id="percenter">
+				<p id="username">姓名</p>
+				<br><br><br>
+				<hr>
+				<input id="myorder" type="button" value="我的预约" />
+				<hr>
+			</div>
+			<div id="perInfo">
+				<span>预约活动列表</span>
+				<Br/><br/>
+				<ul id="orderid">
+				</ul>
+			</div>
+			<script src="../resources/js/main.js"></script>
+			<!-- <script>
+        window.location.href = "#bottom";
+    </script> -->
+		</div>
+		<!-- 选项卡绑定相应的页面 -->
+		<script type="text/javascript">
+			$("#get_bookcase").click(function() {
+				$("#iframe_page").attr("src", 'cupboard.html');
+			});
+			$("#volunteer_appoint").click(function() {
+				$("#iframe_page").attr("src", 'volform.html');
+			});
+			$("#speach_appoint").click(function() {
+				$("#iframe_page").attr("src", 'lectureform.html');
+			});
+			$("#my_order").click(function() {
+				$("#iframe_page").attr("src", 'myorder.html');
+			});
+		</script>
+		<script type="text/javascript" src="../resources/js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+package com.nchu.library.entity;
+
+import java.util.Date;
+
+public class OrderInfo {
+	private Integer orderId;
+	private Integer activityId;
+	private String userNo;
+	private String userName;
+	private String userqq;
+	private Date orderTm;
+	private int orderStatus;
+	private String orderNo;
+	private String orderMemo;
+	private ActivityInfo activityInfo;
+
+	public ActivityInfo getActivityInfo() {
+		return activityInfo;
+	}
+	public void setActivityInfo(ActivityInfo activityInfo) {
+		this.activityInfo = activityInfo;
+	}
+	public Integer getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+	public Integer getActivityId() {
+		return activityId;
+	}
+	public void setActivityId(Integer activityId) {
+		this.activityId = activityId;
+	}
+	public String getUserNo() {
+		return userNo;
+	}
+	public void setUserNo(String userNo) {
+		this.userNo = userNo;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getUserqq() {
+		return userqq;
+	}
+	public void setUserqq(String userqq) {
+		this.userqq = userqq;
+	}
+	public Date getOrderTm() {
+		return orderTm;
+	}
+	public void setOrderTm(Date orderTm) {
+		this.orderTm = orderTm;
+	}
+	public int getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(int orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+	public String getOrderNo() {
+		return orderNo;
+	}
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
+	public String getOrderMemo() {
+		return orderMemo;
+	}
+	public void setOrderMemo(String orderMemo) {
+		this.orderMemo = orderMemo;
+	}
+	
+
+	
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>多功能预约管理系统</title>
+		<link rel="stylesheet" type="text/css" href="../resources/layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../resources/css/backmanage.css">
+		<script type="text/javascript" src="../resources/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../resources/layui/layui.js"></script>
+	</head>
+
+	<body>
+		<div class="top" style=" 
+		background-image:url(../resources/img/nchulibrary.png);
+		background-repeat:repeat-x;"  > 
+			<p>多功能预约管理系统</p>
+		</div>
+		<div class="bottom">
+			<div class="bottomleft ">
+				<ul class="layui-nav layui-nav-tree layui-inline " lay-filter="demo " style="margin-right:0px; ">
+					<li class="layui-nav-item layui-nav-itemed ">
+						<a id="order_activity" href="#">预约活动</a>
+					</li>
+					<li class="layui-nav-item ">
+						<a href="#" id="order_details">预约详情</a>
+					</li>
+					<li class="layui-nav-item ">
+						<a href="#" id="system_set">系统设置</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="bottomright ">
+				<iframe id="iframe_page" width="100%" src="orderactivity.html" >
+				</iframe>
+			</div>
+
+		</div>
+		<div style="clear: both;"></div>
+		<script src="../resources/js/backmanage.js "></script>
+
+		<script type="text/javascript">
+			$("#order_activity").click(function() {
+				$("#iframe_page").attr("src", 'orderactivity.html');
+			});
+			$("#order_details").click(function() {
+				$("#iframe_page").attr("src", 'orderdetails.html');
+			});
+			$("#system_set").click(function() {
+				$("#iframe_page").attr("src", 'systemset.html');
+			});
+		</script>
+	</body>
+ 
+</html>

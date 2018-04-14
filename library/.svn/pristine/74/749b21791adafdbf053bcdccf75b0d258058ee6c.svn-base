@@ -1,0 +1,47 @@
+*{  
+   margin:0;  
+   padding:0;  
+   font-size:16px;  
+   font-family:"微软雅黑";  
+}  
+.nav{
+	width:100%;
+}
+.content{
+	width: 99%;
+	margin-left: 0.6%;
+	border: 2px solid #00CED1;
+}
+.content #volform{
+	margin:5% 5% 10% 5%;
+	padding: 5% 2% 5% 1%;
+	border: 2px solid black;
+	border-radius: 20px;
+	background-color: #dcd296;
+}
+.content>p{
+	display: block;
+	width:120px;
+	padding: 0;
+	font-size: 1.2em;
+	margin-top: 5%;
+	margin:0 auto;
+}
+
+
+.layui-form-label{
+	padding:9px 0 !important;
+}
+
+.layui-form-label{
+	width:70px !important;
+}
+
+.layui-input-block{
+	margin-left: 90px;
+}
+.layui-btn{
+	border-radius: 10px;
+	width:35%;
+	padding: 0;
+}

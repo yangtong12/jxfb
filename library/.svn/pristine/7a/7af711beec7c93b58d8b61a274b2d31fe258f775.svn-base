@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <title>Insert title here</title>
+<script type="text/javascript" src="myorder.js"></script>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.cookie.js"></script>
+<link type="text/css" href="myorder.css" rel="stylesheet"></link>
+</head>
+<body>
+	<div id="myframe">
+		<input id="myBtn" type="button" value="我的"/>
+	</div>
+	<div id="percenter">
+		<p	id="username">姓名</p>
+		<br><br><br><hr>
+		<input id="myorder" type="button" value="我的预约"/>
+		<hr>
+	</div>
+	<div id="perInfo">
+		<span>预约活动列表</span><Br/><br/>
+		<ul id="orderid">
+		</ul>
+	</div>
+</body>
+</html>

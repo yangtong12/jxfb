@@ -1,0 +1,78 @@
+window.onload=function(){
+	
+	var width=document.documentElement.clientWidth;
+	var myBtnEl=document.getElementById("myBtn");
+	var myorderEl=document.getElementById("myorder");
+	
+	myBtnEl.style.height=parseInt(width)/5+'px';
+	myBtnEl.style.width=myBtnEl.style.height;
+	
+	window.onresize=function(){
+		var width=document.documentElement.clientWidth;
+		var myBtnEl=document.getElementById("myBtn");
+		
+		myBtnEl.style.height=parseInt(width)/5+'px';
+		myBtnEl.style.width=myBtnEl.style.height;
+		
+	};
+	
+	var mycenterEl=document.getElementById("percenter");
+	
+	myBtnEl.onclick=function(){
+		mycenterEl.style.display="block";
+		myBtnEl.style.display="none";
+		$("#username").text("$.cookie('username')");
+	}
+	
+	var perInfoEl=document.getElementById("perInfo");
+	
+	myorderEl.onclick=function(){
+		perInfoEl.style.display="block";
+		mycenterEl.style.display="none";
+
+		$.ajax({
+	        type: "POST",
+	        url: "http://yt.ngrok.xiaomiqiu.cn/library/manage/queryOrderedActivity",
+	        data:{userno:$.cookie('userno')},
+	        dataType: "json",//一个关键字，用来标识预期将被响应所返回的数据的类型。
+	        success: function(data){
+	        	if(data.code==0){
+	    			
+	    			for(var index in msg){//		var i=0;i<3;++i	
+	    				var ulEl=document.getElementById("orderid");
+	    				
+	    				var liEl=document.createElement("li");
+	    				var activitycategoryEl=document.createElement("span");
+	    				var orderstatusEl=document.createElement("span");
+	    				var ordernoEl=document.createElement("span");
+	    				var activitynameEl=document.createElement("span");
+	    				var ordertmEl=document.createElement("p");
+	    				
+	    				activitycategoryEl.id="activitycategory";
+	    				orderstatusEl.id="orderstatus";
+	    				ordernoEl.id="orderno";
+	    				activitynameEl.id="activityname";
+	    				ordertmEl.id="ordertm";
+	    				
+	    				activitycategoryEl.innerHTML=$("#activitycategory").text("活动类别:"+index.activitycategory);
+	    				orderstatusEl.innerHTML=$("#orderstatus").text(index.orderstatus);
+	    				ordernoEl.innerHTML=$("#userno").text("编号:"+index.userno);
+	    				activitynameEl.innerHTML=$("#username").text("活动名称:"+index.username);
+	    				ordertmEl.innerHTML=$("#ordertm").text("预约时间:"+index.ordertm);
+	    				
+	    				liEl.appendChild(activitycategoryEl);
+	    				liEl.appendChild(orderstatusEl);
+	    				liEl.appendChild(ordernoEl);
+	    				liEl.appendChild(activitynameEl);
+	    				liEl.appendChild(ordertmEl);
+	    				
+	    				ulEl.appendChild(liEl);
+	    				console.debug(liEl);
+	    			}
+	    		}
+	         }
+	    });	
+		
+		
+	}	
+}

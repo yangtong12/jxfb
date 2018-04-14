@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nchu.library.dao.SystemSetDao">
+    <select id="querySystemSet" resultType="com.nchu.library.entity.SystemSet">
+         select cupboardhelp,volunteer,lecturehelp
+         FROM
+         systemset
+    </select>
+    <update id="modifySystemSet" parameterType="com.nchu.library.entity.SystemSet">
+         update systemset
+         <set>
+           <if test="cupBoardHelp!=null">
+               cupboardhelp=#{cupBoardHelp},
+           </if>
+           <if test="volunteerHelp!=null">
+               volunteerhelp=#{volunteerHelp},
+           </if>
+           <if test="lectureHelp!=null">
+               lecturehelp=#{lectureHelp}
+           </if>
+         </set>
+         where sysid=#{sysId}
+    </update>
+    <select id="querySystemCount" resultType="com.nchu.library.entity.SystemSet">
+           SELECT
+          count(1)
+          FROM
+         systemset
+    </select>
+</mapper>

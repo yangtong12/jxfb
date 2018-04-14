@@ -1,0 +1,127 @@
+package com.nchu.library.web.wechat;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.nchu.library.dto.CodeMsg;
+import com.nchu.library.entity.ActivityInfo;
+import com.nchu.library.entity.OrderInfo;
+import com.nchu.library.service.ActivityInfoService;
+import com.nchu.library.service.OrderInfoService;
+import com.nchu.library.util.HttpServletRequestUtil;
+
+@Controller
+@RequestMapping("/front")
+public class ActivityController {
+    @Autowired
+    private ActivityInfoService activityInfoService;
+    @Autowired
+    private OrderInfoService orderInfoService;
+ 
+    
+    @RequestMapping(value = "/cupboardOrderPage", method = RequestMethod.POST)
+    @ResponseBody
+	private Map<String,Object> appointment(Model model , HttpServletRequest request) {
+    	Map<String,Object> modelMap=new HashMap<String,Object>();
+		int activityid=HttpServletRequestUtil.getInt(request,"activityid");
+		try {
+			ActivityInfo activitylist=activityInfoService.getActivityInfo(activityid);
+			modelMap.put("success",CodeMsg.SUCCESS);
+			modelMap.put("data",activitylist);
+		}catch(Exception e) {
+			modelMap.put("code",CodeMsg.FAILURE);
+			modelMap.put("errMsg",e.toString());
+		}
+		return modelMap;
+    }
+    
+    @RequestMapping(value="/OrderActivity", method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String,Object> OrderActivity(HttpServletRequest request){
+    	Map<String,Object> modalMap=new HashMap<String,Object>();
+    	String openId=(String)request.getSession().getAttribute("openId");
+    	int activityId=(int)request.getSession().getAttribute("activityid");
+    	OrderInfo orderInfo=orderInfoService.queryByUsername(openId, activityId);
+    	if(orderInfo!=null) {
+    		modalMap.put("code",CodeMsg.FAILURE);
+    		return modalMap;
+    	}
+    	if(activityInfoService.leftcount(activityId)>0) {
+	    	int effNum=orderInfoService.insertOrder(orderInfo, openId);
+	    	if(effNum>0) {
+	    		modalMap.put("code",CodeMsg.SUCCESS);
+	    	}else {
+	    		modalMap.put("code",CodeMsg.FAILURE);
+	    	}
+    	}else {
+    		modalMap.put("code",CodeMsg.FAILURE);
+    	}
+    	return modalMap;
+    }
+    @RequestMapping(value="/lectureOrderPage", method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String,Object> LectureOrderPage(HttpServletRequest request){
+    	Map<String,Object> modelMap=new HashMap<String,Object>();
+    	ActivityInfo activityInfo=new ActivityInfo();
+    	activityInfo.setActivityCategory(2);
+    	activityInfo.setActivityBgntm(new Date());
+    	try {
+    		List<ActivityInfo> activityInfoList=activityInfoService.queryManage(activityInfo);
+    		modelMap.put("code",CodeMsg.SUCCESS);
+    		modelMap.put("data",activityInfoList);
+    	}catch(Exception e) {
+    		modelMap.put("code",CodeMsg.FAILURE);
+    		modelMap.put("errMsg",e.getMessage());
+    	}
+    	return modelMap;
+    	
+    }
+    
+    
+    @RequestMapping(value="/volunteerOrderPage",method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String,Object> VolunteerOrderPage(HttpServletRequest request) {
+    	Map<String,Object> modelMap=new HashMap<String,Object>();
+    //	String userno=HttpServletRequestUtil.getString(request,"userno");
+    	try {
+    		ActivityInfo activityInfo=new ActivityInfo();
+    		activityInfo.setActivityBgntm(new Date());
+    		List<ActivityInfo> activityInfoList=activityInfoService.getVolunteerInfo(activityInfo);
+    	    modelMap.put("code",CodeMsg.SUCCESS);
+    		modelMap.put("data",activityInfoList);
+    	}catch(Exception e) {
+    		modelMap.put("code",CodeMsg.FAILURE);
+    		modelMap.put("errMsg",e.getMessage());
+    	}
+    	return modelMap;
+    }
+    @RequestMapping(value="/queryOrderActivity",method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String,Object> QueryOrderActivity(Model model,HttpServletRequest request){
+    	Map<String,Object> modelMap=new HashMap<String, Object>();
+    	String openId=(String)request.getAttribute("openId");
+    	try {
+    		List<OrderInfo> orderInfo=orderInfoService.queryOrder(openId);
+    		modelMap.put("code",CodeMsg.SUCCESS);
+    		modelMap.put("data",orderInfo);
+    		model.addAttribute(modelMap);
+    	}catch(Exception e) {
+    		modelMap.put("code",CodeMsg.FAILURE);
+    		modelMap.put("errMsg",e.getMessage());
+    	}
+    	return modelMap;
+    }
+    
+    
+}

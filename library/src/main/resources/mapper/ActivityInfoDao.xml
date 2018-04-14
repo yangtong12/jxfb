@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nchu.library.dao.ActivityInfoDao">
+   <resultMap id="OrderResultMap" type="com.nchu.library.entity.ActivityInfo">
+		<id column="activityid" property="activityId" />
+		<result column="activitycategory" property="activityCategory" />
+		<result column="activitybgntm" property="activityBgntm" />
+		<result column="activityendtm" property="activityEndtm" />
+		<result column="canordernum" property="canorderNum" />
+		<result column="beginno" property="beginNo" />
+		<result column="opengrade" property="openGrade" />
+		<result column="leftordernum" property="leftorderNum" />
+		<result column="activitystatus" property="activityStatus" />
+		<result column="activityname" property="activityName" />
+		<association property="systemSet" column="sysid"
+			javaType="com.nchu.library.entity.SystemSet">
+			<id column="sysid" property="sysId" />
+			<result column="cupboardhelp" property="cupBoardHelp" />
+		</association>	
+	</resultMap>
+	
+   <select id="queryActivityInfo" resultMap="OrderResultMap">
+         SELECT a.activityid,a.activitycategory,a.activitybgntm,a.activityendtm,
+         a.canordernum,a.beginno,a.opengrade,a.leftordernum,a.activitystatus,
+         a.activityname,s.cupboardhelp
+         FROM activityinfo a,systemset s
+         where a.activityid=#{activityId}
+       
+     <!--order by activityid desc limit 2--> 
+   </select>
+   <insert id="insertAppointmentInfo" useGeneratedKeys="true" keyProperty="activityId"
+		keyColumn="activityid">
+		INSERT INTO
+		activityinfo(activitycategory,activitybgntm,activityendtm,
+		canordernum,beginno,opengrade,leftordernum,activitystatus,activityname)
+		VALUES
+		(#{activityCategory},#{activityBgntm},#{activityEndtm},
+		#{canorderNum},#{beginNo},#{openGrade},#{leftorderNum},#{activityStatus},#{activityName})
+   </insert>
+   <select id="queryVolunterInfo" resultType="com.nchu.library.entity.ActivityInfo">
+      SELECT activityid,activitycategory,activitybgntm,activityendtm,
+      canordernum,beginno,opengrade,leftordernum,activitystatus
+      FROM
+      activityinfo
+      where
+      TO_SECONDS(activitybgntm)>TO_SECONDS(#{activityBgntm})
+   </select>
+   <update id="updateActivityInfo" parameterType="com.nchu.library.entity.ActivityInfo">
+		UPDATE activityinfo
+		<set>
+		  <if test="activityCategory!=null">
+		      activitycategory=#{activityCategory},
+		   </if>
+		   <if test="activityName!=null">
+		     activityname=#{activityName},
+		   </if>
+		   <if test="activityBgntm!=null">
+		    activitybgntm=#{activityBgntm},
+		   </if>
+		   <if test="activityEndtm!=null">
+		    activityendtm=#{activityEndtm},
+		   </if>
+		   <if test="canorderNum!=null">
+		     canordernum=#{canorderNum},
+		   </if>
+		   <if test="beginNo!=null">
+		    beginno=#{beginNo},
+		   </if>
+		   <if test="openGrade!=null">
+		     opengrade=#{openGrade},
+		   </if>
+		</set>
+		<where>
+		activityid = #{activityId}
+		  
+		</where>
+	</update>
+	<select id="querybyInfo" resultType="com.nchu.library.entity.ActivityInfo">
+	    SELECT activityid,activitycategory,activitybgntm,activityendtm,
+        canordernum,beginno,opengrade,leftordernum,activitystatus
+        FROM
+        activityinfo
+        <where>
+           <if test="activityCategory!=0">
+                and activitycategory=#{activityCategory}
+           </if>
+           <if test="activityBgntm!=null and activityEndtm==null">
+               and TO_SECONDS(activitybgntm) > TO_SECONDS(#{activityBgntm})
+           </if>
+           <if test="activityBgntm==null and activityEndtm!=null">
+              and TO_SECONDS(activityendtm)&gt;TO_SECONDS(#{activityEndtm})
+           </if>
+           <if test="activityBgntm!=null and activityEndtm!=null">
+              and TO_SECONDS(activitybgntm) > TO_SECONDS(#{activityBgntm})
+              and TO_SECONDS(activityendtm)&gt;TO_SECONDS(#{activityEndtm}) 
+           </if>
+           <if test="activityStatus!=0">
+               and activitystatus=#{activityStatus}
+           </if>
+        </where>
+	</select>
+	<delete id="deleteActivityInfo">
+	   DELETE
+	   FROM
+	   activityinfo
+	   WHERE
+	   activityid=#{activityId}
+	</delete>
+	<select id="queryActivityCount" resultType="int">
+	    SELECT
+       count(1)
+       FROM
+       activityinfo
+        <where>
+           <if test="activityCategory!=0">
+                and activitycategory=#{activityCategory}
+           </if>
+           <if test="activityBgntm!=null and activityEndtm==null">
+               and TO_SECONDS(activitybgntm) > TO_SECONDS(#{activityBgntm})
+           </if>
+           <if test="activityBgntm==null and activityEndtm!=null">
+              and TO_SECONDS(activityendtm)&gt;TO_SECONDS(#{activityEndtm})
+           </if>
+           <if test="activityBgntm!=null and activityEndtm!=null">
+              and TO_SECONDS(activitybgntm) > TO_SECONDS(#{activityBgntm})
+              and TO_SECONDS(activityendtm)&gt;TO_SECONDS(#{activityEndtm}) 
+           </if>
+           <if test="activityStatus!=0">
+               and activitystatus=#{activityStatus}
+           </if>
+        </where>
+	</select>
+</mapper>

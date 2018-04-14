@@ -1,0 +1,42 @@
+package com.nchu.library;
+
+import java.util.Date;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.nchu.library.dao.ActivityInfoDao;
+import com.nchu.library.entity.ActivityInfo;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class ActivityInfoDaoTest {
+	@Autowired
+	private ActivityInfoDao activityInfoDao;
+	
+	/*@Test
+	public void testActivityDao() {
+		ActivityInfo activityInfo=activityInfoDao.queryActivityInfo(1);
+		System.out.println(activityInfo.getBeginNo());
+		
+	}*/
+	
+	@Test
+	public void testInsertActivity() {
+		ActivityInfo activityInfo=new ActivityInfo();
+		activityInfo.setActivityBgntm(new Date());
+		activityInfo.setActivityEndtm(new Date());
+		activityInfo.setActivityCategory(2);
+		activityInfo.setActivityStatus(1);
+		activityInfo.setBeginNo("12");
+		activityInfo.setCanorderNum(12);
+		activityInfo.setLeftorderNum(13);
+		activityInfo.setOpenGrade("45");
+		activityInfo.setActivityName("123");
+		activityInfoDao.insertAppointmentInfo(activityInfo);
+	}
+
+}

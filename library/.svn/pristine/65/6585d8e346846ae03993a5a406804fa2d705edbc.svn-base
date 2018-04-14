@@ -1,0 +1,20 @@
+package com.nchu.library.dao;
+
+import java.util.List;
+
+import com.nchu.library.entity.ActivityInfo;
+
+public interface ActivityInfoDao {
+	/**
+	 * 查询活动
+	 */
+	List<ActivityInfo> queryActivityInfo(long ActivityId);
+	
+	/**
+	 * 修改预约状态
+	 */
+	int insertAppointmentInfo(ActivityInfo activityInfo);
+	
+	
+
+}

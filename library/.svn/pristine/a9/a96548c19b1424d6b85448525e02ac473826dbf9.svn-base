@@ -1,0 +1,88 @@
+package com.nchu.library.service.Impl;
+
+import static org.mockito.Matchers.intThat;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.nchu.library.dao.OrderInfoDao;
+import com.nchu.library.entity.OrderInfo;
+import com.nchu.library.service.OrderInfoService;
+
+@Service
+public class OrderInfoServiceImpl implements OrderInfoService{
+    @Autowired
+    private OrderInfoDao orderInfoDao;
+
+	
+	@Override
+	public List<OrderInfo> queryOrder(String userNo) {
+		// TODO Auto-generated method stub
+		return orderInfoDao.queryOrderInfoList(userNo);
+	}
+
+	@Override
+	@Transactional
+	public int insertOrder(OrderInfo orderInfo,String username) {
+		// TODO Auto-generated method stub
+		orderInfo.setUserName(username);
+		int effNum=0;
+		try{
+			effNum=orderInfoDao.insertOrderInfo(orderInfo);
+			if(effNum<=0) {
+				throw new RuntimeException("增加预约信息失败");
+			}
+		}catch(Exception e) {
+			throw new RuntimeException("添加预约信息失败"+e.getMessage());
+		}
+		return effNum;
+	}
+
+	@Override
+	public List<OrderInfo> orderInfoList(OrderInfo orderInfo) {
+		// TODO Auto-generated method stub
+		return orderInfoDao.queryOrderInfo(orderInfo);
+	}
+
+	@Override
+	public int queryOrderCount(OrderInfo orderInfo) {
+		// TODO Auto-generated method stub
+		return orderInfoDao.queryOrderInfoCount(orderInfo);
+	}
+
+	@Override
+	@Transactional
+	public int updateOrderInfo(OrderInfo orderInfo) {
+		// TODO Auto-generated method stub
+		int effNum=0;
+		try{
+			effNum=orderInfoDao.updateOrderInfo(orderInfo);
+			if(effNum<=0) {
+				throw new RuntimeException("更改预约信息失败!");
+			}
+		}catch(Exception e){
+			throw new RuntimeException("更改预约信息失败!");
+		}
+		return effNum;
+	}
+
+	@Override
+	@Transactional
+	public int deleteOrderInfo(int orderId) {
+		// TODO Auto-generated method stub
+		int effNum=0;
+		try{
+			effNum=orderInfoDao.deleteOrderInfo(orderId);
+			if(effNum<=0) {
+				throw new RuntimeException("删除预约信息失败!");
+			}
+		}catch(Exception e){
+			throw new RuntimeException("删除预约信息失败!");
+		}
+		return effNum;
+	}
+
+}

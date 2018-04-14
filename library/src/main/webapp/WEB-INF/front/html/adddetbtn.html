@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	 <title>Insert title here</title>
+	<link type="text/css" href="../resources/css/addbtn.css" rel="stylesheet"></link>
+</head>
+<body>
+	<div id="addframe">
+		<input id="addEl" type="button" value="添加"/><br><br>
+		<div id="table">
+			<table border="1">
+				<thead>
+					<tr>
+						<td>已预约列表id</td>
+						<td>预约活动id</td>
+						<td>用户学号</td>
+						<td>用户姓名</td>
+						<td>用户QQ</td>
+						<td>预约成功的时间</td>
+						<td>预约状态</td>
+						<td>预约号</td>
+						<td>预约数量</td>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+				</tbody>
+			</table>
+		</div>
+		<div id="form">
+			<form>
+				<div>
+					<div class="contentleft">
+						<p><span>已预约列表id:</span><input type="text" id="orderId" autocomplete="off"><br /></p>
+					    <p><span>预约活动id:</span><input type="text" id="activityId" autocomplete="off"/></p>
+						<p><span>用户学号:</span><input type="text" id="userNo" autocomplete="off"><br /></p>
+						<p><span>用户姓名:</span><input type="text" id="userName" autocomplete="off"><br /></p>
+					</div>
+					<div class="contentright">
+						<p><span>用户QQ:</span><input type="text" id="userqq" autocomplete="off"><br /></p>
+						<p><span>预约成功的时间:</span><input type="text" id="orderTm" autocomplete="off"><br /></p>
+						<p><span>预约状态:</span><input type="text" id="orderStatus" autocomplete="off"><br /></p>
+						<p><span>预约号:</span><input type="text" id="orderNo" autocomplete="off"><br /></p>
+						<p><span>预约数量:</span><input type="text" id="orderMemo" autocomplete="off"><br /></p>
+					</div>
+		
+					<p class="btn" style="clear: both;">
+						<input type="button" value="提交" id="submitbtn"/>
+						<input type="reset" value="重置" id="resetbtn"/>
+					</p>
+				</div>
+		    </form>
+		 </div>
+	</div>
+	<script type="text/javascript" src="../resources/js/addbtn.js"></script>
+</body>
+</html>

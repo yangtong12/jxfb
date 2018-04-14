@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+#outframe {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border: 2px black solid;
+}
+
+a:link {
+	text-decoration: none
+}
+
+a {
+	float: left;
+}
+
+input {
+	margin: 1%;
+	padding: 1%;
+	text-align: center;
+	font-size:24px;
+	width: 20%;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+#cupboard-content {
+	margin: 1% auto;
+	display: none;
+	width: 90%;
+	height: 90%;
+	border: 1px solid black;
+}
+img{
+	width:50%;
+	height:50%;
+}
+span {
+	font-size:20px;
+	font-weight:bold;
+	float: right;
+}
+
+#orderedcicle {
+	margin: 20% auto;
+	text-align: center;
+	background-color: red;
+	border: 1px solid black;
+	border-radius: 50%;
+}
+p{
+	font-size:20px;
+	font-weight:bold;
+}

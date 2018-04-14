@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+*{  
+   margin:0;  
+   padding:0;  
+   font-size:16px;  
+} 
+
+form{
+	
+	width: 705px;
+	height: 80%;
+	border: 2px solid #b9cbe8;
+	border-radius: 6px;
+	margin: 6% auto ;
+	padding-top: 10px;
+	background-color: #b9cbe8;
+}
+
+.contentleft{
+	float:left;1
+	margin-right: 25px;
+}
+
+.contentright{
+	float:right;
+	margin-right: 10px;
+}
+p{
+	margin-top: 20px;
+}
+
+.contentleft p span{
+	width: 100px;
+	display: inline-block;
+	text-align: right;
+	padding-top: 10px;
+	padding-right: 8px;
+}
+.contentright p span{
+	width: 120px;
+	display: inline-block;
+	text-align: right;
+	padding-top: 10px;
+	padding-right: 12px;
+}
+
+p input{
+	width: 200px;
+	height: 24px;
+	border: 1px solid #737383;
+	padding: 2px;
+}
+.btn input{
+	width:100px;
+	height: 30px;
+	background: #6d9eeb;
+	margin-top: 20px;
+	margin-left: 160px;
+	margin-bottom: 20px;
+	border-radius: 3px;
+	font-size: 18px;
+	font-family: "微软雅黑";
+	color: #fff;
+}

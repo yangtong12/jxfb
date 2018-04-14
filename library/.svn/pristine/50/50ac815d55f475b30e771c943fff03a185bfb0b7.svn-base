@@ -1,0 +1,23 @@
+package com.nchu.library.web.wechat;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/front")
+public class FrontController {
+	
+	 @RequestMapping(value = "/cupboard")
+	 private String cupboard() {
+		 return "html/cupboard";
+	 }
+     
+	 @RequestMapping(value = "/index")
+	 private String index() {
+		 return "html/index";
+	 }
+	 
+	
+
+
+}

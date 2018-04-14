@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" href="../resources/layui/css/layui.css">
+		<script src="../resources/layui/layui.js"></script>
+		<script type="text/javascript" src="../resources/js/jquery-3.3.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../resources/css/volform.css">
+	</head>
+
+	<body>
+		<div class="content">
+			<a href="#tips"><img src="../resources/img/aaa.png" width="6%" height="6%"></a>
+			<form class="layui-form" action="post" id="lectureform">
+				<div id="contentform">
+					<div class="layui-form-item">
+						<label class="layui-form-label">讲座名称:</label>
+						<div class="layui-input-block">
+							<select name="speachname" lay-verify="required" lay-search="" lay-filter="test">
+								<option value="1"></option>
+								<option value="2"></option>
+								<option value="3"></option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间:</label>
+						<div class="layui-input-block">
+							<select name="time" lay-verify="required" lay-search="">
+								<option value="1"></option>
+								<option value="2"></option>
+								<option value="3"></option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数:</label>
+						<div class="layui-input-block">
+							<input type="text" name="peoplenum" autocomplete="off" class="layui-input" pattern="[1-9][0-9]{4,}" value="1" lay-verify="required">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">联系电话:</label>
+						<div class="layui-input-block">
+							<input type="text" name="phonenum" autocomplete="off" class="layui-input" pattern="[0-9]{11}">
+						</div>
+					</div>
+				</div>
+				<div id="contentbtn">
+					<div class="layui-form-item">
+						<div class="layui-input-block" style="margin-left:0px" ;>
+							<button type="submit" class="layui-btn" lay-submit="a()">预&nbsp;&nbsp;&nbsp;约</button>
+						</div>
+					</div>
+				</div>
+			</form>
+
+		</div>
+		<script>
+			layui.use('form', function() {
+				var form = layui.form;
+				form.render();
+			});
+		</script>
+	</body>
+
+</html>
